@@ -337,6 +337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7910833950838046768}
   - component: {fileID: 369308502379327704}
+  - component: {fileID: 8294334883970464387}
   m_Layer: 6
   m_Name: Floor3
   m_TagString: Untagged
@@ -374,6 +375,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83dc8665f8bfd349a72d1fa98c7fac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &8294334883970464387
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7910833950838046769}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1e7238b3ea424c44b8ef2521838ab478, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8240501566641176334
 GameObject:
   m_ObjectHideFlags: 0

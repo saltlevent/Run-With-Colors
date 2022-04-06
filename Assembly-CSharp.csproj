@@ -58,6 +58,7 @@
     <Compile Include="Assets\Scripts\CharacterOperation.cs" />
     <Compile Include="Assets\Scripts\Floor\FloorGenerator.cs" />
     <Compile Include="Assets\Scripts\Base\LevTools.cs" />
+    <Compile Include="Assets\Scripts\GameController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
