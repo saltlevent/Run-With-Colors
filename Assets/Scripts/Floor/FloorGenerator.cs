@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class FloorGenerator : MonoBehaviour
 {
+    public GameController controller;
+
     public List<GameObject> FloorModels;
 
     public List<GameObject> AddedFloors;
@@ -16,6 +18,14 @@ public class FloorGenerator : MonoBehaviour
 
     private void Start()
     {
+        controller = GameObject.Find("GameController").GetComponent<GameController>();
+        controller.DenemeEvent += Controller_DenemeEvent;
+
+        splicingNewFloor(3);
+    }
+
+    private void Controller_DenemeEvent(object sender, System.EventArgs e)
+    {
         splicingNewFloor(3);
     }
 
@@ -24,7 +34,8 @@ public class FloorGenerator : MonoBehaviour
         if (count > 0)
         {
             lastZPosition += 4;
-            lastFloor = addFloor(Vector3.forward * lastZPosition);
+            //ControllerLastFloor;
+            controller.setLastFloor = addFloor(Vector3.forward * lastZPosition);
 
             if (count > 1)
             {

@@ -14,14 +14,22 @@ public class CharacterMovementControl : MonoBehaviour
     {
 
 #if UNITY_EDITOR
+        
         if (Input.GetKey(KeyCode.UpArrow))
         {
             characterAnimator.SetBool("Running", true);
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
-        else
+        
+        if (Input.GetKey(KeyCode.RightArrow))
         {
-            characterAnimator.SetBool("Running", false);
+            characterAnimator.SetBool("Running", true);
+            transform.Translate(Vector3.right * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            characterAnimator.SetBool("Running", true);
+            transform.Translate(Vector3.left * Time.deltaTime);
         }
 #endif
 
@@ -32,7 +40,7 @@ public class CharacterMovementControl : MonoBehaviour
 
             if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Began)
             {
-                Debug.Log("TOUCHH!!");
+                Debug.Log("Anlýk: " + touch.position);
             }
             else if (touch.phase == TouchPhase.Canceled || touch.phase == TouchPhase.Ended)
             {
