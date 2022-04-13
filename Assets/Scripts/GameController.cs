@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -17,9 +15,9 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if(_floorGenerator.lastFloor.GetHashCode() == this._characterOperation.currentFloor.GetHashCode())
+        if (_floorGenerator.lastFloor.Equals(_characterOperation.currentFloor))
         {
-            Debug.Log(_characterOperation.currentFloor.name);
+            _floorGenerator.splicingNewFloor(3);
         }
     }
 }

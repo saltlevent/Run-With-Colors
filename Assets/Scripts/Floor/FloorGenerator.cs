@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,30 +13,35 @@ public class FloorGenerator : MonoBehaviour
 
     public int lastZPosition = 16;
 
-    public bool createRoad = false;
 
     private void Start()
     {
-        splicingNewFloor();
+        splicingNewFloor(3);
     }
-    private void Update()
+
+    public void splicingNewFloor(int count)
     {
-        if (createRoad)
+        if (count > 0)
         {
-            splicingNewFloor();
-            createRoad = false;
+            lastZPosition += 4;
+            lastFloor = addFloor(Vector3.forward * lastZPosition);
+
+            if (count > 1)
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    lastZPosition += 4;
+                    addFloor(Vector3.forward * lastZPosition);
+                }
+            }
         }
+
     }
 
-    public void splicingNewFloor()
+    private GameObject addFloor(Vector3 positionFloor)
     {
-        lastZPosition += 4;
-        addFloor(Vector3.forward*lastZPosition);
-    }
-
-    private void addFloor(Vector3 positionFloor)
-    {
-        lastFloor = Instantiate(FloorModels[Random.Range(0,FloorModels.Count)],positionFloor,Quaternion.Euler(0,0,0));
+        var floorObject = Instantiate(FloorModels[Random.Range(0, FloorModels.Count)], positionFloor, Quaternion.Euler(0, 0, 0));
+        return floorObject;
     }
 
 }

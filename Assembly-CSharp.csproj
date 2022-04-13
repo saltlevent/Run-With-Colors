@@ -54,11 +54,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Floor\FloorOperations\SingleFloorModel.cs" />
+    <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Floor\FloorOperations\FloorOperation.cs" />
-    <Compile Include="Assets\Scripts\CharacterOperation.cs" />
+    <Compile Include="Assets\Scripts\Character\CharacterOperation.cs" />
     <Compile Include="Assets\Scripts\Floor\FloorGenerator.cs" />
     <Compile Include="Assets\Scripts\Base\LevTools.cs" />
-    <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\Character\CharacterMovementControl.cs" />
+    <Compile Include="Assets\Scripts\Character\CharacterCamera.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

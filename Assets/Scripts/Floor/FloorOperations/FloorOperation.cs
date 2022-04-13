@@ -18,13 +18,7 @@ public class FloorOperation : MonoBehaviour
             if (item.name == transform.name) continue;
 
             generateColor(item.gameObject);
-
         }
-    }
-
-    void Update()
-    {
-
     }
 
     void generateColor(GameObject singleFloorGameObject)
