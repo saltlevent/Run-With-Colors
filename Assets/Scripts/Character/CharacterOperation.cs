@@ -18,7 +18,7 @@ public class CharacterOperation : MonoBehaviour
 
     void Update()
     {
-        Physics.Raycast(transform.position, Vector3.down, out hit, 10f, layer);
+        Physics.Raycast(transform.position, Vector3.down, out hit, 1000f, layer);
 
         if (hit.collider != null)
         {
