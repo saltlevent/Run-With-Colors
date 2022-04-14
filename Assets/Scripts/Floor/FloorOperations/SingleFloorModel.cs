@@ -18,7 +18,11 @@ public class SingleFloorModel : MonoBehaviour
         if (controller.gameColor == _colorFloorE)
         {
             GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
-            GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
+            GetComponent<Renderer>().material.SetColor("_EmissionColor", ColorOps.ConvertEnumToColor(_colorFloorE));
+        }
+        else
+        {
+            GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
         }
            
     }
