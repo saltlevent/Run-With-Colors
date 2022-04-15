@@ -11,6 +11,7 @@ public class CharacterOperation : MonoBehaviour
     public GameController controller;
 
     public string floorColorText = "";
+
     private void Start()
     {
         controller = GameObject.Find("GameController").GetComponent<GameController>();
@@ -18,12 +19,17 @@ public class CharacterOperation : MonoBehaviour
 
     void Update()
     {
-        Physics.Raycast(transform.position, Vector3.down, out hit, 1000f, layer);
+        Physics.Raycast(transform.position, Vector3.down, out hit, 2f, layer);
 
         if (hit.collider != null)
         {
             controller.setCharacterColorFloor = hit.collider.GetComponent<SingleFloorModel>().colorFloorE;
-            controller.setCharacterFloor = hit.collider.GetComponentInParent<FloorOperation>().gameObject;   
+            controller.setCharacterFloor = hit.collider.GetComponentInParent<FloorOperation>().gameObject;
+            controller.characterIsGrounded = true;
+        }
+        else
+        {
+            controller.characterIsGrounded = false;
         }
     }
 

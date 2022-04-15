@@ -36,6 +36,5 @@ public class CharacterMovementControl : MonoBehaviour
                 GetComponent<Rigidbody>().AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
             }
         }
-
     }
 }

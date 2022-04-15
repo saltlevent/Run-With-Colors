@@ -19,12 +19,12 @@ public class FloorGenerator : MonoBehaviour
     private void Start()
     {
         controller = GameObject.Find("GameController").GetComponent<GameController>();
-        controller.DenemeEvent += Controller_DenemeEvent;
+        controller.FloorGeneration += Controller_FloorGeneration;
 
         splicingNewFloor(3);
     }
 
-    private void Controller_DenemeEvent(object sender, System.EventArgs e)
+    private void Controller_FloorGeneration(object sender, System.EventArgs e)
     {
         splicingNewFloor(3);
     }

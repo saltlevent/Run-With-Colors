@@ -15,7 +15,7 @@ namespace ToolsLevent
         public static Color32 white => new Color32(240, 240, 240, 255);
     }
 
-    public enum ColorFloor { None, Red, Green, Blue, Yellow, Black, White };
+    public enum ColorFloor { None, Red, Green, Blue, Yellow, White, Black };
 
     public static class ColorOps
     {

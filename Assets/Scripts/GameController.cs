@@ -1,53 +1,65 @@
 using System;
-using UnityEngine;
 using ToolsLevent;
+using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
     public GameObject setLastFloor { set { _floorChangeFloor = value; } }
     public GameObject setCharacterFloor { set { _characterFloor = value; } }
-    public ColorFloor setCharacterColorFloor { set { _characterFloorColor = value; } }
+    public ColorFloor setCharacterColorFloor { set { characterFloorColor = value; } }
 
 
-    public ColorFloor gameColor = ColorFloor.Green;
+    public ColorFloor currentGameColor = ColorFloor.Black;
 
-    public float currentScore;
+    public bool gameStarted = false;
 
-    public GameObject _floorChangeFloor;
-    public GameObject _characterFloor;
+    public float currentScore=0;
 
-    public ColorFloor _characterFloorColor;
 
-    public event EventHandler DenemeEvent;
-    
-    private void Start()
+    public ColorFloor characterFloorColor;
+
+    public event EventHandler FloorGeneration;
+
+    public float _time = 10;
+
+    public bool characterIsGrounded = false;
+
+    private GameObject _floorChangeFloor;
+    private GameObject _characterFloor;
+
+    private void FixedUpdate()
     {
+        _time -= Time.deltaTime;
 
-    }
-
-    private void Update()
-    {
-        if (_floorChangeFloor != null && _characterFloor != null)
+        if (_time <= 0)
         {
-            if (_floorChangeFloor.Equals(_characterFloor))
+            currentGameColor = (ColorFloor)UnityEngine.Random.Range(1, 6);
+            _time = 5;
+            gameStarted = true;
+        }
+
+        if (_floorChangeFloor != null && _characterFloor != null && _floorChangeFloor.Equals(_characterFloor))
+        {
+            FloorGeneration?.Invoke(this, EventArgs.Empty);
+        }
+
+
+        if (characterIsGrounded && gameStarted)
+        {
+            if (characterFloorColor == ColorFloor.None || characterFloorColor == ColorFloor.Black)
             {
-                DenemeEvent?.Invoke(this, EventArgs.Empty);
+
+            }
+            else if (currentGameColor == characterFloorColor)
+            {
+                addScore(Time.deltaTime * 3);
+            }
+            else
+            {
+                addScore(-Time.deltaTime);
             }
         }
 
-
-        if (gameColor == _characterFloorColor)
-        {
-            addScore(Time.deltaTime*3);
-        }
-        else if (_characterFloorColor == ColorFloor.None)
-        {
-
-        }
-        else
-        {
-            addScore(-Time.deltaTime);
-        }
     }
 
     void addScore(float score)
