@@ -4,12 +4,15 @@ public class CharacterMovementControl : MonoBehaviour
 {
     public float speed = 10;
     public float jumpSpeed = 5;
+    public float JumpTime = 3;
 
     private Animator characterAnimator;
 
     private float firstPositionX = 0;
 
     private Vector3 velocityC = Vector3.zero;
+    private float jumpTimeCounter = 0;
+
     private void Start()
     {
         characterAnimator = GetComponentInChildren<Animator>();
@@ -24,16 +27,31 @@ public class CharacterMovementControl : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
 
-            if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Began)
+
+            if (touch.phase == TouchPhase.Began)
             {
-                Debug.Log("Anlýk: " + Camera.main.ScreenToViewportPoint(touch.position));
+                characterAnimator.SetBool("Jumping", false);
+            }
+            else if (touch.phase == TouchPhase.Moved)
+            {
                 var pos = transform.position;
                 pos.x = (Camera.main.ScreenToViewportPoint(touch.position).x - .5f) * 1.8f;
                 transform.position = Vector3.SmoothDamp(transform.position, pos, ref velocityC, .3f);
             }
-            if (touch.phase == TouchPhase.Canceled || touch.phase == TouchPhase.Ended)
+            else if (touch.phase == TouchPhase.Canceled || touch.phase == TouchPhase.Ended)
             {
-                GetComponent<Rigidbody>().AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+                characterAnimator.SetBool("Jumping", true);
+                jumpTimeCounter = 0;
+            }
+        }
+        else if(characterAnimator.GetBool("Jumping"))
+        {
+            jumpTimeCounter += Time.deltaTime;
+            Debug.Log((int)jumpTimeCounter);
+            if (jumpTimeCounter >= JumpTime)
+            {
+                characterAnimator.SetBool("Jumping", false);
+                jumpTimeCounter = 0;
             }
         }
     }

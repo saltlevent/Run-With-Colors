@@ -36,8 +36,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -68,8 +70,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 49
       Script: {instanceID: 0}
-    - Class: 54
-      Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
     - Class: 72
@@ -87,52 +87,50 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1684}
+      Script: {instanceID: 1706}
     - Class: 114
-      Script: {instanceID: 1818}
+      Script: {instanceID: 1844}
     - Class: 114
-      Script: {instanceID: 2082}
+      Script: {instanceID: 2124}
     - Class: 114
-      Script: {instanceID: 2112}
+      Script: {instanceID: 2156}
     - Class: 114
-      Script: {instanceID: 2212}
+      Script: {instanceID: 2260}
     - Class: 114
-      Script: {instanceID: 2322}
+      Script: {instanceID: 2378}
     - Class: 114
-      Script: {instanceID: 2440}
+      Script: {instanceID: 2500}
     - Class: 114
-      Script: {instanceID: 2598}
+      Script: {instanceID: 2672}
     - Class: 114
-      Script: {instanceID: 2726}
+      Script: {instanceID: 2806}
     - Class: 114
-      Script: {instanceID: 2882}
+      Script: {instanceID: 2980}
     - Class: 114
-      Script: {instanceID: 3164}
+      Script: {instanceID: 3284}
     - Class: 114
-      Script: {instanceID: 3430}
+      Script: {instanceID: 3566}
     - Class: 114
-      Script: {instanceID: 3594}
+      Script: {instanceID: 3738}
     - Class: 114
-      Script: {instanceID: 3762}
+      Script: {instanceID: 3908}
     - Class: 114
-      Script: {instanceID: 3888}
+      Script: {instanceID: 4040}
     - Class: 114
-      Script: {instanceID: 4024}
+      Script: {instanceID: 4184}
     - Class: 114
-      Script: {instanceID: 4166}
+      Script: {instanceID: 4336}
     - Class: 114
-      Script: {instanceID: 4306}
+      Script: {instanceID: 4480}
     - Class: 114
-      Script: {instanceID: 4554}
+      Script: {instanceID: 4742}
     - Class: 114
-      Script: {instanceID: 4698}
+      Script: {instanceID: 4890}
     - Class: 114
-      Script: {instanceID: 4730}
+      Script: {instanceID: 4924}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
-      Script: {instanceID: 0}
-    - Class: 135
       Script: {instanceID: 0}
     - Class: 137
       Script: {instanceID: 0}
@@ -431,7 +429,7 @@ ScriptsOnlyBuild:
     className: AutoExposure
   - hash:
       serializedVersion: 2
-      Hash: 26f3730ede1fe91003a6ed5976c8d115
+      Hash: 2c8f701f8309a968cfd81c319e658945
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CharacterMovementControl
@@ -720,4 +718,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/saltl/Documents/GitHub/Run-With-Colors/prototip.apk
+  playerPath: C:/Users/Levent/Run With Colors/prototip.apk

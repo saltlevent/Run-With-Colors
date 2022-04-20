@@ -19,17 +19,20 @@ public class CharacterOperation : MonoBehaviour
 
     void Update()
     {
-        Physics.Raycast(transform.position, Vector3.down, out hit, 2f, layer);
+        Physics.Raycast(transform.position, Vector3.down, out hit, 100f, layer);
 
-        if (hit.collider != null)
+        if (GetComponentInChildren<Animator>().GetBool("Jumping"))
+        {
+            controller.setCharacterColorFloor = ToolsLevent.ColorFloor.None;
+            controller.setCharacterFloor = hit.collider.GetComponentInParent<FloorOperation>().gameObject;
+        }
+        else if (hit.collider != null)
         {
             controller.setCharacterColorFloor = hit.collider.GetComponent<SingleFloorModel>().colorFloorE;
             controller.setCharacterFloor = hit.collider.GetComponentInParent<FloorOperation>().gameObject;
-            controller.characterIsGrounded = true;
         }
         else
         {
-            controller.characterIsGrounded = false;
         }
     }
 
