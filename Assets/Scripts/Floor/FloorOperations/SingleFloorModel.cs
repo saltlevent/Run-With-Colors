@@ -15,16 +15,20 @@ public class SingleFloorModel : MonoBehaviour
     }
     private void Update()
     {
-        if (controller.currentGameColor == _colorFloorE)
+        switch (controller.gameState)
         {
-            GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
-            GetComponent<Renderer>().material.SetColor("_EmissionColor", ColorOps.ConvertEnumToColor(_colorFloorE));
+            case GameState.Paused:
+                break;
+            case GameState.Stopped:
+                break;
+            case GameState.Playing:
+                floorColorChanger();
+                break;
+            case GameState.Finished:
+                break;
+            default:
+                break;
         }
-        else
-        {
-            GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
-        }
-           
     }
 
     public ColorFloor colorFloorE
@@ -39,5 +43,19 @@ public class SingleFloorModel : MonoBehaviour
             return _colorFloorE;
         }
     }
+    
+    void floorColorChanger()
+    {
 
+        if (controller.currentGameColor == _colorFloorE)
+        {
+            GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+            GetComponent<Renderer>().material.SetColor("_EmissionColor", ColorOps.ConvertEnumToColor(_colorFloorE));
+        }
+        else
+        {
+            GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+        }
+
+    }
 }

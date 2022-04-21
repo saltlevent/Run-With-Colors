@@ -4,30 +4,72 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+
     public GameObject setLastFloor { set { _floorChangeFloor = value; } }
     public GameObject setCharacterFloor { set { _characterFloor = value; } }
     public ColorFloor setCharacterColorFloor { set { characterFloorColor = value; } }
 
+    public GameState gameState = GameState.Stopped;
 
-    public ColorFloor currentGameColor = ColorFloor.Black;
+    public ColorFloor currentGameColor = ColorFloor.None;
 
-    public bool gameStarted = false;
-
-    public float currentScore=0;
+    public float currentScore = 0;
 
 
     public ColorFloor characterFloorColor;
 
     public event EventHandler FloorGeneration;
 
-    public float _time = 10;
+    public float _time = 0;
 
     public bool characterIsGrounded = false;
 
     private GameObject _floorChangeFloor;
     private GameObject _characterFloor;
 
-    private void FixedUpdate()
+    public GameObject menuCanvas;
+
+
+    private void Start()
+    {
+        gameState = GameState.Stopped;
+        menuCanvas.SetActive(true);
+        characterIsGrounded = true;
+    }
+    private void Update()
+    {
+        switch (gameState)
+        {
+            case GameState.Paused:
+                break;
+            case GameState.Stopped:
+                if (!menuCanvas.activeSelf)
+                {
+                    menuCanvas.SetActive(true);
+                }
+
+                break;
+            case GameState.Playing:
+                if (menuCanvas.activeSelf)
+                {
+                    menuCanvas.SetActive(false);
+                }
+                scoreAndFloorGenerationSystem();
+                break;
+            case GameState.Finished:
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    void addScore(float score)
+    {
+        currentScore += score;
+    }
+
+    void scoreAndFloorGenerationSystem()
     {
         _time -= Time.deltaTime;
 
@@ -35,7 +77,6 @@ public class GameController : MonoBehaviour
         {
             currentGameColor = (ColorFloor)UnityEngine.Random.Range(1, 6);
             _time = 5;
-            gameStarted = true;
         }
 
         if (_floorChangeFloor != null && _characterFloor != null && _floorChangeFloor.Equals(_characterFloor))
@@ -43,8 +84,7 @@ public class GameController : MonoBehaviour
             FloorGeneration?.Invoke(this, EventArgs.Empty);
         }
 
-
-        if (characterIsGrounded && gameStarted)
+        if (characterIsGrounded)
         {
             if (characterFloorColor == ColorFloor.None || characterFloorColor == ColorFloor.Black)
             {
@@ -59,11 +99,10 @@ public class GameController : MonoBehaviour
                 addScore(-Time.deltaTime);
             }
         }
-
     }
 
-    void addScore(float score)
+    public void StartGame()
     {
-        currentScore += score;
+        gameState = GameState.Playing;
     }
 }

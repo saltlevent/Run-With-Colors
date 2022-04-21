@@ -23,16 +23,6 @@ public class FloorOperation : MonoBehaviour
             generateColor(item.gameObject);
         }
     }
-/*
-    private void FixedUpdate()
-    {
-        if (Vector3.Distance(transform.position,MainCharacter.position)>30)
-        {
-            Debug.Log(Vector3.Distance(transform.position, MainCharacter.position));
-            Destroy(gameObject);
-        }
-    }
-*/
     void generateColor(GameObject singleFloorGameObject)
     {
         Renderer rend = singleFloorGameObject.GetComponent<Renderer>();

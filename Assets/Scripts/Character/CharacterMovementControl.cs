@@ -26,6 +26,26 @@ public class CharacterMovementControl : MonoBehaviour
     }
     private void Update()
     {
+        switch (gameController.gameState)
+        {
+            case ToolsLevent.GameState.Paused:
+                break;
+            case ToolsLevent.GameState.Stopped:
+                break;
+            case ToolsLevent.GameState.Playing:
+                movement();
+                break;
+            case ToolsLevent.GameState.Finished:
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    void movement()
+    {
+
         characterAnimator.SetBool("Running", true);
 
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
@@ -53,10 +73,10 @@ public class CharacterMovementControl : MonoBehaviour
                 jumpTimeCounter = 0;
             }
         }
-        else  if(characterAnimator.GetBool("Jumping"))
+        else if (characterAnimator.GetBool("Jumping"))
         {
             jumpTimeCounter += Time.deltaTime;
-            
+
             if (jumpTimeCounter >= JumpTime)
             {
                 characterAnimator.SetBool("Jumping", false);

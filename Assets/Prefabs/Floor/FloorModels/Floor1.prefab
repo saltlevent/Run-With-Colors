@@ -1648,7 +1648,7 @@ GameObject:
   - component: {fileID: 7864569844398692691}
   m_Layer: 6
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: WillBeDeleted
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

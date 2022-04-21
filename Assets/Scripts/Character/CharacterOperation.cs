@@ -19,6 +19,24 @@ public class CharacterOperation : MonoBehaviour
 
     void Update()
     {
+        switch (controller.gameState)
+        {
+            case ToolsLevent.GameState.Paused:
+                break;
+            case ToolsLevent.GameState.Stopped:
+                break;
+            case ToolsLevent.GameState.Playing:
+                characterOps();
+                break;
+            case ToolsLevent.GameState.Finished:
+                break;
+            default:
+                break;
+        }
+    }
+
+    void characterOps()
+    {
         Physics.Raycast(transform.position, Vector3.down, out hit, 100f, layer);
 
         if (GetComponentInChildren<Animator>().GetBool("Jumping"))

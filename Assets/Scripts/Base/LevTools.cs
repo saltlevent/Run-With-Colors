@@ -17,6 +17,8 @@ namespace ToolsLevent
 
     public enum ColorFloor { None, Red, Green, Blue, Yellow, White, Black };
 
+    public enum GameState {Paused, Stopped, Playing, Finished}
+
     public static class ColorOps
     {
         public static Color32 ConvertEnumToColor(ColorFloor colorFloor)
