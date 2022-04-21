@@ -13,14 +13,21 @@ public class CharacterMovementControl : MonoBehaviour
     private Vector3 velocityC = Vector3.zero;
     private float jumpTimeCounter = 0;
 
+    GameController gameController;
+
     private void Start()
     {
         characterAnimator = GetComponentInChildren<Animator>();
+
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+
         firstPositionX = transform.position.x;
+
     }
     private void Update()
     {
         characterAnimator.SetBool("Running", true);
+
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
         if (Input.touchCount > 0)
@@ -31,6 +38,7 @@ public class CharacterMovementControl : MonoBehaviour
             if (touch.phase == TouchPhase.Began)
             {
                 characterAnimator.SetBool("Jumping", false);
+                gameController.characterIsGrounded = true;
             }
             else if (touch.phase == TouchPhase.Moved)
             {
@@ -41,16 +49,18 @@ public class CharacterMovementControl : MonoBehaviour
             else if (touch.phase == TouchPhase.Canceled || touch.phase == TouchPhase.Ended)
             {
                 characterAnimator.SetBool("Jumping", true);
+                gameController.characterIsGrounded = false;
                 jumpTimeCounter = 0;
             }
         }
-        else if(characterAnimator.GetBool("Jumping"))
+        else  if(characterAnimator.GetBool("Jumping"))
         {
             jumpTimeCounter += Time.deltaTime;
-            Debug.Log((int)jumpTimeCounter);
+            
             if (jumpTimeCounter >= JumpTime)
             {
                 characterAnimator.SetBool("Jumping", false);
+                gameController.characterIsGrounded = true;
                 jumpTimeCounter = 0;
             }
         }
