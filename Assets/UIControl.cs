@@ -5,12 +5,12 @@ using UnityEngine;
 public class UIControl : MonoBehaviour
 {
     private GameController gameController;
-    private TextMeshProUGUI textMeshPro;
+    public TextMeshProUGUI inGameText;
+    public TextMeshProUGUI finishText;
 
     private void Start()
     {
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
-        textMeshPro = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void FixedUpdate()
@@ -18,15 +18,16 @@ public class UIControl : MonoBehaviour
         switch (gameController.gameState)
         {
             case ToolsLevent.GameState.Paused:
-                textMeshPro.text = $"Paused";
+                inGameText.text = $"Paused";
                 break;
             case ToolsLevent.GameState.Stopped:
-                textMeshPro.text = $"";
+                inGameText.text = $"";
                 break;
             case ToolsLevent.GameState.Playing:
-                textMeshPro.text = $"Color: {gameController.currentGameColor.ToString()}\nScore:{String.Format("{0:0.00}", gameController.currentScore)}";
+                inGameText.text = $"Score:{String.Format("{0:0.00}", gameController.currentScore)}\n Time:{String.Format("{0:0.00}", gameController.gameCountdown)}";
                 break;
             case ToolsLevent.GameState.Finished:
+                finishText.text = $"Score:{String.Format("{0:0.00}", gameController.currentScore)}";
                 break;
             default:
                 break;

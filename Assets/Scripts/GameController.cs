@@ -1,6 +1,7 @@
 using System;
 using ToolsLevent;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -28,8 +29,11 @@ public class GameController : MonoBehaviour
     private GameObject _characterFloor;
 
     public GameObject menuCanvas;
+    public GameObject pauseMenuCanvas;
+    public GameObject inGameCanvas;
+    public GameObject finishGameCanvas;
 
-
+    public float gameCountdown = 15;
     private void Start()
     {
         gameState = GameState.Stopped;
@@ -41,22 +45,45 @@ public class GameController : MonoBehaviour
         switch (gameState)
         {
             case GameState.Paused:
+                if (!pauseMenuCanvas.activeSelf)
+                {
+                    pauseMenuCanvas.SetActive(true);
+                    inGameCanvas.SetActive(false);
+
+                }
                 break;
             case GameState.Stopped:
                 if (!menuCanvas.activeSelf)
                 {
                     menuCanvas.SetActive(true);
+                    inGameCanvas.SetActive(false);
                 }
-
                 break;
             case GameState.Playing:
-                if (menuCanvas.activeSelf)
+                if (menuCanvas.activeSelf || pauseMenuCanvas.activeSelf)
                 {
+                    inGameCanvas.SetActive(true);
                     menuCanvas.SetActive(false);
+                    pauseMenuCanvas.SetActive(false);
                 }
+
+                gameCountdown -= Time.deltaTime;
+
                 scoreAndFloorGenerationSystem();
+
+                if (gameCountdown < 0)
+                {
+                    gameState = GameState.Finished;
+                }
                 break;
             case GameState.Finished:
+                if (!finishGameCanvas.activeSelf)
+                {
+                    inGameCanvas.SetActive(false);
+                    menuCanvas.SetActive(false);
+                    pauseMenuCanvas.SetActive(false);
+                    finishGameCanvas.SetActive(true);
+                }
                 break;
             default:
                 break;
@@ -104,5 +131,15 @@ public class GameController : MonoBehaviour
     public void StartGame()
     {
         gameState = GameState.Playing;
+    }
+    public void PauseGame()
+    {
+        gameState = GameState.Paused;
+    }
+
+    public void RestartGame()
+    {
+        Scene scene = SceneManager.GetActiveScene(); 
+        SceneManager.LoadScene(scene.name);
     }
 }

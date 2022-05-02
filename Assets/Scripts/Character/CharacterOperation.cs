@@ -42,7 +42,7 @@ public class CharacterOperation : MonoBehaviour
         if (GetComponentInChildren<Animator>().GetBool("Jumping"))
         {
             controller.setCharacterColorFloor = ToolsLevent.ColorFloor.None;
-            controller.setCharacterFloor = hit.collider.GetComponentInParent<FloorOperation>().gameObject;
+            //controller.setCharacterFloor = hit.collider.GetComponentInParent<FloorOperation>().gameObject;
         }
         else if (hit.collider != null)
         {

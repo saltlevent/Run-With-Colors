@@ -4,7 +4,7 @@ public class CharacterMovementControl : MonoBehaviour
 {
     public float speed = 10;
     public float jumpSpeed = 5;
-    public float JumpTime = 3;
+    public float JumpTime = 1;
 
     private Animator characterAnimator;
 
@@ -60,7 +60,7 @@ public class CharacterMovementControl : MonoBehaviour
                 characterAnimator.SetBool("Jumping", false);
                 gameController.characterIsGrounded = true;
             }
-            else if (touch.phase == TouchPhase.Moved)
+            else if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
             {
                 var pos = transform.position;
                 pos.x = (Camera.main.ScreenToViewportPoint(touch.position).x - .5f) * 1.8f;

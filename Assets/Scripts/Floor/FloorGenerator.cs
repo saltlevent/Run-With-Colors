@@ -15,6 +15,7 @@ public class FloorGenerator : MonoBehaviour
 
     public int lastZPosition = 16;
 
+    public GameObject itemObject;
 
     private void Start()
     {
@@ -44,6 +45,7 @@ public class FloorGenerator : MonoBehaviour
                     lastZPosition += 4;
                     addFloor(Vector3.forward * lastZPosition);
                 }
+                AddItem(.5f);
             }
         }
 
@@ -55,4 +57,13 @@ public class FloorGenerator : MonoBehaviour
         return floorObject;
     }
 
+    private void AddItem(float chance)
+    {
+        var _chance = Random.Range(0f, 1f);
+        if (chance < _chance)
+        {
+            var floorObject = Instantiate(itemObject, Vector3.forward * lastZPosition + Vector3.right * Random.Range(-.6f, .6f) + Vector3.up * .3f, Quaternion.Euler(0, 0, 0));
+
+        }
+    }
 }
