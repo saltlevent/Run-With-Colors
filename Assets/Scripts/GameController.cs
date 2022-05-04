@@ -34,11 +34,14 @@ public class GameController : MonoBehaviour
     public GameObject finishGameCanvas;
 
     public float gameCountdown = 15;
+
+    public float maxScore = 0;
     private void Start()
     {
         gameState = GameState.Stopped;
         menuCanvas.SetActive(true);
         characterIsGrounded = true;
+        maxScore = PlayerPrefs.GetFloat("MaxScore");
     }
     private void Update()
     {
@@ -84,6 +87,10 @@ public class GameController : MonoBehaviour
                     pauseMenuCanvas.SetActive(false);
                     finishGameCanvas.SetActive(true);
                 }
+                if (maxScore<currentScore)
+                {
+                    PlayerPrefs.SetFloat("MaxScore",currentScore);
+                }
                 break;
             default:
                 break;
@@ -113,7 +120,7 @@ public class GameController : MonoBehaviour
 
         if (characterIsGrounded)
         {
-            if (characterFloorColor == ColorFloor.None || characterFloorColor == ColorFloor.Black)
+            if (characterFloorColor == ColorFloor.None)
             {
 
             }

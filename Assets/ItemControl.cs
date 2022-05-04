@@ -6,9 +6,13 @@ public class ItemControl : MonoBehaviour
 {
     public LayerMask layer;
 
+    public float addTime = 10;
+
     private RaycastHit hit;
 
-    public GameController controller;
+    private GameController controller;
+
+
     void Start()
     {
         controller = GameObject.Find("GameController").GetComponent<GameController>();
@@ -16,10 +20,11 @@ public class ItemControl : MonoBehaviour
 
     void Update()
     {
-        Physics.Raycast(transform.position + Vector3.left * .2f + Vector3.back * .2f, Vector3.right, out hit, .5f, layer);
-        if(hit.collider != null)
+        var ray = Physics.Raycast(transform.position, Vector3.back, out hit, .5f, layer);
+        Debug.DrawRay(transform.position + Vector3.forward*.2f, Vector3.back * .5f);
+        if(ray)
         {
-            controller.gameCountdown += 5;
+            controller.gameCountdown += addTime;
             Destroy(gameObject);
         }
     }
