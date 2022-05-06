@@ -53,17 +53,17 @@
     <UnityVersion>2020.3.26f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Destroyer.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterCamera.cs" />
-    <Compile Include="Assets\UIControl.cs" />
+    <Compile Include="Assets\Scripts\UIControl.cs" />
     <Compile Include="Assets\Scripts\Floor\FloorOperations\SingleFloorModel.cs" />
-    <Compile Include="Assets\ItemControl.cs" />
+    <Compile Include="Assets\Scripts\ItemControl.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterMovementControl.cs" />
     <Compile Include="Assets\Scripts\Floor\FloorOperations\FloorOperation.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterOperation.cs" />
     <Compile Include="Assets\Scripts\Floor\FloorGenerator.cs" />
     <Compile Include="Assets\Scripts\Base\LevTools.cs" />
-    <Compile Include="Assets\Destroyer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
