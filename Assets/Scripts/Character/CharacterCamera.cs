@@ -7,7 +7,7 @@ public class CharacterCamera : MonoBehaviour
     public float smoothTime = 0.1F;
     private Vector3 velocity = Vector3.zero;
 
-    void Update()
+    void LateUpdate()
     {
         Vector3 targetPosition = Character.TransformPoint(new Vector3(0, .86f, -.68f));
 
