@@ -29,13 +29,16 @@ public class CharacterMovementControl : MonoBehaviour
         switch (gameController.gameState)
         {
             case ToolsLevent.GameState.Paused:
+                characterAnimator.SetBool("Running", false);
                 break;
             case ToolsLevent.GameState.Stopped:
+                characterAnimator.SetBool("Running", false);
                 break;
             case ToolsLevent.GameState.Playing:
                 movement();
                 break;
             case ToolsLevent.GameState.Finished:
+                characterAnimator.SetBool("Running", false);
                 break;
             default:
                 break;
