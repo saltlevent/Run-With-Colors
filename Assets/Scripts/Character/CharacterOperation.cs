@@ -12,9 +12,11 @@ public class CharacterOperation : MonoBehaviour
 
     public string floorColorText = "";
 
+    private Animator animChild;
     private void Start()
     {
         controller = GameObject.Find("GameController").GetComponent<GameController>();
+        animChild = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -39,10 +41,9 @@ public class CharacterOperation : MonoBehaviour
     {
         Physics.Raycast(transform.position, Vector3.down, out hit, 100f, layer);
 
-        if (GetComponentInChildren<Animator>().GetBool("Jumping"))
+        if (animChild.GetBool("Jumping"))
         {
             controller.setCharacterColorFloor = ToolsLevent.ColorFloor.None;
-            //controller.setCharacterFloor = hit.collider.GetComponentInParent<FloorOperation>().gameObject;
         }
         else if (hit.collider != null)
         {

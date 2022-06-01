@@ -9,9 +9,12 @@ public class SingleFloorModel : MonoBehaviour
 
     GameController controller;
 
+    Renderer floorRenderer;
+
     private void Start()
     {
         controller = GameObject.Find("GameController").GetComponent<GameController>();
+        floorRenderer = GetComponent<Renderer>();
     }
     private void Update()
     {
@@ -49,12 +52,12 @@ public class SingleFloorModel : MonoBehaviour
 
         if (controller.currentGameColor == _colorFloorE)
         {
-            GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
-            GetComponent<Renderer>().material.SetColor("_EmissionColor", ColorOps.ConvertEnumToColor(_colorFloorE));
+            floorRenderer.material.EnableKeyword("_EMISSION");
+            floorRenderer.material.SetColor("_EmissionColor", ColorOps.ConvertEnumToColor(_colorFloorE));
         }
         else
         {
-            GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+            floorRenderer.material.DisableKeyword("_EMISSION");
         }
 
     }

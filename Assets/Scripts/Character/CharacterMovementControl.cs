@@ -48,7 +48,6 @@ public class CharacterMovementControl : MonoBehaviour
 
     void movement()
     {
-
         characterAnimator.SetBool("Running", true);
 
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
@@ -71,6 +70,7 @@ public class CharacterMovementControl : MonoBehaviour
             }
             else if (touch.phase == TouchPhase.Canceled || touch.phase == TouchPhase.Ended)
             {
+                characterAnimator.GetComponent<AudioSource>().Play();
                 characterAnimator.SetBool("Jumping", true);
                 gameController.characterIsGrounded = false;
                 jumpTimeCounter = 0;
